@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="大冶农商行、抽奖、存款福利、福利、存款、大冶农商行抽奖">
+		<meta name="description" content="大冶农商行抽奖网站">
+		<meta name="author" content="Tao">
+		<meta name=viewport
+		    content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="./css/main.css?v=1.0" />
+		<link rel="stylesheet" href="./layui/css/layui.css" />
+		<link rel="stylesheet" href="./layui/css/modules/code.css" />
+		<script src="./js/lucky.js"></script>
+		<title>大冶农商行抽奖</title>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="./layui/layui.js"></script>
+		
+		
+	</head>
+	<body>
+		<div class="main">	
+			 
+			<div class="headtopbg"></div>
+			<div class="main-box">
+				<div id="my-lucky"></div>
+			</div>
+			<div class="tx-box">
+				<div class="tx-box-top">
+					<div class="layui-btn layui-btn-zx ts" data-method="notice">规则</div>
+					<button class="layui-btn layui-btn-zx" id="rq" lay-key="1" lay-date="">	</button>
+						<input required maxlength='0' id="list" placeholder="金牛支行" class="layui-btn layui-btn-zx">
+				</div>
+				<div class="tx-box-bottom">
+					<div class="layui-form">
+						<input type="text" id="xm" name="xm" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input form-input-xm">
+						<input type="text" id="hm" name="hm" required lay-verify="required" placeholder="请输入九位凭证号码" autocomplete="off" class="layui-input form-input">
+					</div>
+				</div>
+			</div>
+			<div class="logo">
+			</div>
+			<script>
+				const teImg = {
+				    src: './img/te.png',
+				    width: '130%',
+				    top: '25%',
+					left:'10%'
+				  }
+				  
+				  const xxImg = {
+				      src: './img/xx.png',
+				      width: '100%',
+				      top: '1%',
+					  left:'10%'
+				    }
+					
+					const yiImg = {
+					    src: './img/yi.png',
+					    width: '110%',
+					    top: '25%',
+					    left:'4%'
+					  }
+					  
+					const erImg = {
+					    src: './img/er.png',
+					    width: '110%',
+					    top: '25%',
+					    left:'4%'
+					  }
+					  
+					const sanImg = {
+					    src: './img/san.png',
+					    width: '110%',
+					    top: '25%',
+					    left:'4%'
+					  }
+					  
+					const canImg = {
+					    src: './img/can.png',
+					    width: '110%',
+					    top: '25%',
+					    left:'4%'
+					  }
+				
+			  const myLucky = new LuckyCanvas.LuckyGrid('#my-lucky', {
+			    width: '280px',
+			    height: '280px',
+			    blocks: [
+			      { padding: '22px', imgs:[{src:'./img/grid-bg.png',width:'100%',height:'100%'}] },
+			      
+			    ],
+			    prizes: [
+			      { x: 0, y: 0, shadow: '2px 1px 2px #cccccc',imgs:[teImg], fonts: [{ text: '特等奖', top: '25%',fontSize:'0'}], range:240 },
+			      { x: 1, y: 0, shadow: '2px 1px 2px #cccccc',imgs:[xxImg], fonts: [{ text: '谢谢惠顾', top: '25%', lengthLimit:'50%',fontSize:'0' }], range:100 },
+			      { x: 2, y: 0, shadow: '2px 1px 2px #cccccc',imgs:[canImg], fonts: [{ text: '参与奖', top: '25%',fontSize:'0'}], range:300 },
+			      { x: 2, y: 1, shadow: '2px 1px 2px #cccccc',imgs:[yiImg], fonts: [{ text: '一等奖', top: '25%' ,fontSize:'0'}], range:200 },
+			      { x: 2, y: 2, shadow: '2px 1px 2px #cccccc',imgs:[xxImg], fonts: [{ text: '谢谢惠顾', top: '25%',fontSize:'0' }], range:100 },
+			      { x: 1, y: 2, shadow: '2px 1px 2px #cccccc',imgs:[sanImg], fonts: [{ text: '三等奖', top: '25%', lengthLimit:'50%',fontSize:'0' }], range:300 },
+			      { x: 0, y: 2, shadow: '2px 1px 2px #cccccc',imgs:[erImg], fonts: [{ text: '二等奖', top: '25%',fontSize:'0' }], range:300 },
+			      { x: 0, y: 1, shadow: '2px 1px 2px #cccccc',imgs:[canImg], fonts: [{ text: '参与奖', top: '25%',fontSize:'0' }], range:300 },
+			    ],
+			    buttons: [{
+			      x: 1, y: 1,
+			      background: '#c34e4d',
+				  imgs:[{
+					  src:'./img/go.png',
+					  width:'100%',
+					  height:'100%'
+				  }],
+			      fonts: [{ text: '开始', top: '25%',fontSize:'0' }]
+			    }],
+			    defaultStyle: {
+			      background: '#F3EFE0',
+			    },
+				defaultConfig:{
+					speed: 7,
+					accelerationTime:200,
+					decelerationTime:200,
+					
+				},
+				activeStyle: {
+				      background: '#fce686'
+				},
+			    start: function() {
+			      // 开始游戏
+			      if ($('#xm').val()=="" || $('#hm').val()==''  || $('#list').val()=='' || isNaN($('#hm').val()) || $('#xm').val().length < 2 || $('#hm').val().length != 9) {
+					  layer.msg("填写正确的姓名、凭证号并选择支行",{icon:5})
+			      	
+			      }else{
+					  myLucky.play()
+				  }
+			      // 假设接口的请求速度是1s
+			      setTimeout(() => {
+			        // 停止游戏
+			        myLucky.stop()
+			      }, 5000)
+			    },
+			    end: function(prize) { // 游戏结束触发 end 回调
+			      layer.open({
+					  type: 0,
+					  content: '尊敬的'+$('#xm').val()+'，恭喜您在'+$('#list').val()+'中奖，'+'结果为：'+ prize.fonts[0].text
+				  })
+			    }
+			  })
+			</script>
+		</div>
+		
+		<script>
+			
+			$('.ts').click(function(){
+				layer.open({
+					type: 1
+					,title:false
+					,clonseBtn:false
+					,area:'300px;'
+					,shade:0.8
+					,id:'LAY_layuipro'
+					,btn:['我已阅读并知晓']
+					,btnAligen:'c'
+					,content:'<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><b>活动时间:<br>2023年1月1日至2023年2月11日</b><br><br>一、客户需在各支行营业网点内完成抽奖，如在营业网点外进行抽奖，抽奖结果无效。<br><br>二、客户需由工作人员协助完成抽奖，如在无工作人员在场情况下，抽奖结果无效。<br><br>三、客户需留存照片、存单、存折等凭证，同时工作人员盖印抽奖标识登记在册。<br><br>四、本次抽奖活动最终解释权归大冶农商行与下辖支行所有。</div>'
+				})
+			})
+			
+			layui.use(['dropdown','layer','util','laydate'], function(){
+			  var layer = layui.layer
+			  ,form = layui.form
+			  ,element = layui.element
+			  ,laydate = layui.laydate
+			  ,util = layui.util
+			  ,dropdown = layui.dropdown
+			  ,$ = layui.jquery;
+			  
+			  
+			  
+			 //初演示
+			   dropdown.render({
+			     elem: '#list'
+			     ,data: [{
+			        title: '城区'
+			             ,id: 1
+						 ,isSpreadItem: false
+			             ,type: 'group'
+			             ,child: [{
+			               title: '营业部'
+			               ,id: 10
+			             },
+						 {
+							title: '东风支行'
+							,id: 11 
+						 },{
+							title: '万和支行'
+							,id: 12 
+						 },{
+							title: '东岳支行'
+							,id: 13 
+						 },{
+							title: '城南支行'
+							,id: 14
+						 },{
+							title: '罗桥支行'
+							,id: 15
+						 },{
+							title: '胜利支行'
+							,id: 16
+						 },{
+							title: '和平支行'
+							,id: 17
+						 },{
+							title: '金茂支行'
+							,id: 18
+						 },{
+							title: '高新支行'
+							,id: 19
+						 },{
+							title: '五里牌支行'
+							,id: 20
+						 },
+						],
+					 },{type:'-'},{
+						 title: '乡镇'
+						    ,id: 2
+						 	,isSpreadItem: false
+						    ,type: 'group'
+							,child: [{ title: '金牛支行'
+			               ,id: 21
+			             },
+						 {
+							title: '剧院支行'
+							,id: 22 
+						 },{
+							title: '保安支行'
+							,id: 23 
+						 },{
+							title: '灵乡支行'
+							,id: 24 
+						 },{
+							title: '陈贵支行'
+							,id: 25
+						 },{
+							title: '殷祖支行'
+							,id: 26
+						 },{
+							title: '茗山支行'
+							,id: 27
+						 },{
+							title: '金湖支行'
+							,id: 28
+						 },{
+							title: '金山店支行'
+							,id: 29
+						 },{
+							title: '刘仁八支行'
+							,id: 30
+						 },{
+							title: '还地桥支行'
+							,id: 31,
+						},{
+							title: '铜山口支行'
+							,id: 32
+						},{
+							title: '大箕铺支行'
+							,id: 33
+							},
+							
+							]
+					 }]
+			     ,click: function(obj){
+					this.elem.val(obj.title);
+			     }
+			   });
+			  
+			  //欢迎信息
+			  layer.msg('请仔细阅读规则！！！');
+			  
+			  //日期
+			  laydate.render({
+			    elem: '#rq'
+			    ,value: new Date()
+			    ,isInitValue: true
+			  });
+			
+	
+			 
+			});
+
+		</script>
+		
+		
+	<script src="./js/hb.js"></script>
+	
+	<script src="./js/console.js"></script>
+	
+	</body>
+</html>
